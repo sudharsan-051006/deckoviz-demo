@@ -8,15 +8,22 @@ import ScrollToTop from './components/ScrollToTop';
 import Hero from './components/homepage/Hero';
 import Features from './components/homepage/Features';
 import Testimonials from './components/homepage/Testimonials';
+
 import WhoIsDeckovizFor from './components/homepage/WhoIsDeckovizFor';
+// import Referral from './components/Referral';
+// import FAQ from './components/FAQ';
+// import Contact from './components/Contact';
+
 import PrivacyPolicy from './components/policies/PrivacyPolicy';
 import TermsOfService from './components/policies/TermsOfService';
 import ShippingPolicy from './components/policies/ShippingPolicy';
 import ReturnPolicy from './components/policies/ReturnPolicy';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
+
 import Pricing from './components/homepage/Pricing';
 import Youtube from './components/homepage/Youtube';
+
 import DeckovizLanding from './components/deckovizForBusinesses/DeckovizForHotels';
 import DeckovizRestaurantLanding from './components/deckovizForBusinesses/DeckovizForRestaurants';
 import DeckovizArchitectsLanding from './components/deckovizForBusinesses/DeckovizForArchitects';
@@ -29,9 +36,11 @@ import DeckovizForEnterprise from './components/deckovizForBusinesses/DeckovizFo
 import FAQ from './components/homepage/FAQ';
 import WallOfLove from './components/WallOfLove';
 import HowItWorks from './components/homepage/HowItWorks';
-import Leaderboard from './components/Leaderboard';
-import TransformWalls from './components/homepage/Transform';
 import DesignedFor from './components/homepage/DesignedFor';
+import TransformWalls from './components/homepage/Transform';
+import FAQ from './components/homepage/FAQ';
+import Pricing from './components/homepage/Pricing';
+import Leaderboard from './components/Leaderboard';
 import OrderConfirmed from './components/payment/OrderConfirmed';
 import BulkOrder from './components/payment/BulkOrder';
 import BulkConfirm from './components/payment/BulkConfirm';
@@ -67,15 +76,15 @@ const App: React.FC = () => {
         <Route path="/" element={
           <>
             <Hero/>
-            <TransformWalls />
             <Features />
-            <WhoIsDeckovizFor />
-            <DesignedFor />
             <HowItWorks />
+
             <GuestReactionsTestimonials /> 
             <Youtube />
             <Pricing />
             <FAQ /> 
+            <Testimonials />
+
           </>
         } />
         
