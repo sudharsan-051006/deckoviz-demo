@@ -7,19 +7,23 @@ import PlaceOrder from './components/payment/PlaceOrder';
 import ScrollToTop from './components/ScrollToTop';
 import Hero from './components/homepage/Hero';
 import Features from './components/homepage/Features';
-// import HowItWorks from './components/HowItWorks';
-// import Gallery from './components/Gallery';
-// import Pricing from './components/Pricing';
 import Testimonials from './components/homepage/Testimonials';
+
+import WhoIsDeckovizFor from './components/homepage/WhoIsDeckovizFor';
 // import Referral from './components/Referral';
 // import FAQ from './components/FAQ';
 // import Contact from './components/Contact';
+
 import PrivacyPolicy from './components/policies/PrivacyPolicy';
 import TermsOfService from './components/policies/TermsOfService';
 import ShippingPolicy from './components/policies/ShippingPolicy';
 import ReturnPolicy from './components/policies/ReturnPolicy';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
+
+import Pricing from './components/homepage/Pricing';
+import Youtube from './components/homepage/Youtube';
+
 import DeckovizLanding from './components/deckovizForBusinesses/DeckovizForHotels';
 import DeckovizRestaurantLanding from './components/deckovizForBusinesses/DeckovizForRestaurants';
 import DeckovizArchitectsLanding from './components/deckovizForBusinesses/DeckovizForArchitects';
@@ -28,6 +32,8 @@ import DeckovizForRealEstate from './components/deckovizForBusinesses/DeckovizFo
 import DeckovizTherapistsLanding from './components/deckovizForBusinesses/DeckovizForTherapists';
 import DeckovizSchoolsLanding from './components/deckovizForBusinesses/DeckovizForSchools';
 import DeckovizForRetail from './components/deckovizForBusinesses/DeckovizForStores';
+import DeckovizForEnterprise from './components/deckovizForBusinesses/DeckovizForEnterprise';
+import FAQ from './components/homepage/FAQ';
 import WallOfLove from './components/WallOfLove';
 import HowItWorks from './components/homepage/HowItWorks';
 import DesignedFor from './components/homepage/DesignedFor';
@@ -38,6 +44,12 @@ import Leaderboard from './components/Leaderboard';
 import OrderConfirmed from './components/payment/OrderConfirmed';
 import BulkOrder from './components/payment/BulkOrder';
 import BulkConfirm from './components/payment/BulkConfirm';
+import GuestReactionsTestimonials from './components/homepage/GuestReactionsTestimonials';
+import { i } from 'framer-motion/client';
+
+// ## 1. IMPORT THE NEW BLOG POST PAGE COMPONENT ##
+import BlogPostPage from './components/blog/BlogPostPage';
+
 
 const ScrollToSectionOnHome: React.FC = () => {
   const location = useLocation();
@@ -66,11 +78,20 @@ const App: React.FC = () => {
             <Hero/>
             <Features />
             <HowItWorks />
+
+            <GuestReactionsTestimonials /> 
+            <Youtube />
+            <Pricing />
+            <FAQ /> 
             <Testimonials />
+
           </>
         } />
         
         <Route path="/blog" element={<Blog />} />
+        {/* ## 2. ADD THE NEW DYNAMIC ROUTE FOR SINGLE POSTS ## */}
+        <Route path="/blog/:postSlug" element={<BlogPostPage />} />
+
         <Route path="/designed-for" element={<DesignedFor />} />
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
@@ -91,6 +112,7 @@ const App: React.FC = () => {
         <Route path ="/deckoviz-for-therapists" element={<DeckovizTherapistsLanding />} />
         <Route path ="/deckoviz-for-schools" element={<DeckovizSchoolsLanding />} />
         <Route path ="/deckoviz-for-retailstores" element={<DeckovizForRetail />} />
+        <Route path ="/deckoviz-for-enterprises" element={<DeckovizForEnterprise />} />
         <Route path ="/Wall-Of-Love" element={<WallOfLove/>} />
         <Route path ="/Leaderboard" element={<Leaderboard/>} />
         <Route path ="/Transform-Walls" element={<TransformWalls/>} />
@@ -98,11 +120,6 @@ const App: React.FC = () => {
         <Route path="/order-confirmed" element={<OrderConfirmed />} />
         <Route path ="bulk-orders" element={<BulkOrder />} />
         <Route path ="/bulk-confirm" element={<BulkConfirm />} />
-        {/* <Route path="/gallery" element={<Gallery />} /> */}
-        
-        {/* <Route path="/testimonials" element={<Testimonials />} /> */}
-        {/* <Route path="/referral" element={<Referral />} /> */}
-        {/* <Route path="/faq" element={<FAQ />} /> */}
 
       </Routes>
       <Footer />

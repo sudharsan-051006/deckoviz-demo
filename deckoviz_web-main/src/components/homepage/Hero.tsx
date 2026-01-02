@@ -90,8 +90,6 @@ const Hero: React.FC = () => {
     "/images/lefthero6.png",
     "/images/lefthero2.png",
     "/images/lefthero3.png",
-  
-
   ]
 
   const rightImages = [
@@ -103,7 +101,6 @@ const Hero: React.FC = () => {
     "/images/righthero6.png",
     "/images/righthero2.png",
     "/images/righthero3.png"
-    
   ]
 
  useEffect(() => {
@@ -131,6 +128,30 @@ const Hero: React.FC = () => {
 
   return (
     <section className="py-14 md:py-12 lg:py-10 overflow-hidden relative bg-white">
+      {/* CSS for the glowing button effect */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes pulse-glow {
+          0% {
+            box-shadow: 0 0 5px rgba(138, 43, 226, 0.2), 
+                        0 0 10px rgba(138, 43, 226, 0.2), 
+                        0 0 15px rgba(138, 43, 226, 0.2);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6), 
+                        0 0 30px rgba(138, 43, 226, 0.6), 
+                        0 0 40px rgba(138, 43, 226, 0.4);
+          }
+          100% {
+            box-shadow: 0 0 5px rgba(138, 43, 226, 0.2), 
+                        0 0 10px rgba(138, 43, 226, 0.2), 
+                        0 0 15px rgba(138, 43, 226, 0.2);
+          }
+        }
+        .shop-now-glow {
+          animation: pulse-glow 3s infinite ease-in-out;
+        }
+      `}} />
+
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[40%] rounded-full bg-gradient-to-br from-blue-200 via-indigo-200 to-violet-200 blur-3xl opacity-70"></div>
       </div>
@@ -140,12 +161,12 @@ const Hero: React.FC = () => {
           <h1 className="text-center font-bold text-4xl md:text-5xl lg:text-6xl mb-6 max-w-5xl pt-16">
             <span className="text-gray-900">Transform Your Space with </span>
             <span className="bg-gradient-to-r from-[#9a5ffff9] to-indigo-500 bg-clip-text text-transparent">
-              AI-Powered Art
+              AI-Powered Dynamic Art Frames
             </span>
           </h1>
           {/* Subheading */}
         <p className="text-center text-gray-600 text-xl mb-3 max-w-2xl mx-auto leading-relaxed">
- Deckoviz brings your <span className="text-purple-600 font-semibold">walls to life</span> with a <span className="text-indigo-600 font-semibold">smart art frame</span> that <span className="text-fuchsia-500 font-semibold">learns your style</span> and <span className="text-purple-600 font-semibold">evolves with you</span> over time.
+Deckoviz brings your <span className="text-purple-600 font-semibold">walls to life</span> with a <span className="text-indigo-600 font-semibold">smart art frame</span> that <span className="text-fuchsia-500 font-semibold">learns your style</span> and <span className="text-purple-600 font-semibold">evolves with you</span> over time.
 </p>
 
           {/* Main content with images and stats */}
@@ -183,7 +204,7 @@ const Hero: React.FC = () => {
 <div className="flex gap-5 justify-center">
   <button 
     onClick={() => window.location.href = '/place-order'}
-    className="group relative five-color-gradient border-2 ml-10 border-gray-500 ring-1 ring-inset ring-blue-300 shadow-lg hover:shadow-xl shadow-purple-200/30 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105 overflow-hidden text-base min-w-[140px]"
+    className="group relative five-color-gradient border-2 ml-10 border-gray-500 ring-1 ring-inset ring-blue-300 shadow-lg hover:shadow-xl shadow-purple-200/30 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105 overflow-hidden text-base min-w-[140px] shop-now-glow"
   >
     {/* Shimmer effect overlay */}
     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
@@ -211,7 +232,7 @@ const Hero: React.FC = () => {
   {/* Subtle glow effect */}
   <div className="absolute -inset-1 bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-purple-600/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
   
-  <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl px-6 py-6 border border-gray-200/50 w-full">                 
+  <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl px-6 py-6 border border-gray-200/50 w-full">               
     {/* Stats Grid */}
     <div className="space-y-4">
       {/* Top Row - Artworks and Star Rating */}
@@ -219,9 +240,9 @@ const Hero: React.FC = () => {
         {/* Artworks */}
         <div className="text-center group/stat hover:scale-105 transition-transform duration-300">
           <div className="text-4xl font-bold bg-gradient-to-r from-[#6C63FF] to-[#4F46E5] bg-clip-text text-transparent mb-1">
-            <CountUp from={0} to={1} duration={2} suffix="M+" />
+            <CountUp from={0} to={2.5} duration={2} suffix="M+" />
           </div>
-          <div className="text-gray-600 text-md font-medium">Artworks</div>
+          <div className="text-gray-600 text-md font-medium">Items in Library</div>
           <div className="w-6 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-2 opacity-0 group-hover/stat:opacity-100 transition-opacity duration-300"></div>
         </div>
         
@@ -237,7 +258,7 @@ const Hero: React.FC = () => {
               </svg>
             </div>
           </div>
-          <div className="text-gray-600 text-md font-medium">Star Rating</div>
+          <div className="text-gray-600 text-md font-medium">Star <br> Rating</div>
           <div className="w-6 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-2 opacity-0 group-hover/stat:opacity-100 transition-opacity duration-300"></div>
         </div>
       </div>
