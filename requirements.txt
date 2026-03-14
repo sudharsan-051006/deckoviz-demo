@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pdfplumber
+moviepy
+requests
+python-multipart
+Pillow
+numpy
