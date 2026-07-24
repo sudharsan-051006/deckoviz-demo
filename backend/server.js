@@ -157,37 +157,92 @@ const stripe = new Stripe(
     "sk_test_51S2RGMJ8RKkMEZ712u787r6VLZMz1XL7ZfjarZSFaU1Yat2ZjToH7D9pcV5iO5h4rA6DtxV5F2QbGxa7nr5b9iCG00B5k1Gdsa"
 );
 
+// ============================================================
+// ====================== CORS CONFIG ==========================
+// ============================================================
+
+// Frontend URLs that are allowed to call this backend
+const allowedOrigins = [
+  // Local development
+  "http://localhost:5173",
+  "http://localhost:3000",
+
+  // Netlify production / old domains
+  "https://deckoviz.netlify.app",
+
+  // Main production domain
+  "https://deckoviz.com",
+  "https://www.deckoviz.com"
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+
+    // Allow requests without Origin header
+    // Example: Postman, curl, server-to-server requests
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    // Allow explicitly listed domains
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    // Allow Netlify deploy previews
+    try {
+      const url = new URL(origin);
+
+      if (
+        url.protocol === "https:" &&
+        (
+          url.hostname.endsWith(".netlify.app") ||
+          url.hostname === "netlify.app"
+        )
+      ) {
+        return callback(null, true);
+      }
+    } catch (error) {
+      console.error("Invalid CORS origin:", origin);
+    }
+
+    console.warn("CORS blocked origin:", origin);
+
+    return callback(null, false);
+  },
+
+  methods: [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS"
+  ],
+
+  allowedHeaders: [
+    "Origin",
+    "X-Requested-With",
+    "Content-Type",
+    "Accept",
+    "Authorization"
+  ],
+
+  credentials: true,
+
+  optionsSuccessStatus: 204
+};
+
+// IMPORTANT:
+// CORS must be registered BEFORE bodyParser and BEFORE all routes.
+
+app.use(cors(corsOptions));
+
 // ===== Middlewares =====
 app.use(bodyParser.urlencoded({ extended: true, limit: "200mb" }));
 app.use(bodyParser.json({ limit: "200mb" }));
 app.use(methodOverride("_method"));
 app.use(expressLayouts);
-
-// ===== Enable CORS for Frontend =====
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://deploy-preview-5--tubular-scone-336b8c.netlify.app",
-  "https://deckoviz.netlify.app" // Add your main production domain here too
-];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      
-      // Check if the origin is in our allowed list or is a netlify preview
-      if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith(".netlify.app")) {
-        callback(null, true);
-      } else {
-        // Fallback: in development/preview, we can be more permissive
-        callback(null, true); 
-      }
-    },
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    credentials: true
-  })
-);
 
 // Static files AFTER CORS so generated images get proper headers
 app.use(express.static(path.join(__dirname, "public")));
